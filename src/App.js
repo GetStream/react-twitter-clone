@@ -6,6 +6,7 @@ import { StreamApp } from 'react-activity-feed'
 import StartPage from './pages/StartPage'
 import users from './users'
 import { getFromStorage } from './utils/storage'
+import ScrollToTop from './components/ScrollToTop'
 
 const APP_ID = '1157381'
 const API_KEY = 'qdnhm5t55ss7'
@@ -33,6 +34,7 @@ export default function App() {
   return (
     <StreamApp token={user.token} appId={APP_ID} apiKey={API_KEY}>
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<StartPage />} />
         </Routes>

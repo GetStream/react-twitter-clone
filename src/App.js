@@ -7,6 +7,7 @@ import StartPage from './pages/StartPage'
 import users from './users'
 import { getFromStorage } from './utils/storage'
 import ScrollToTop from './components/ScrollToTop'
+import HomePage from './pages/HomePage'
 
 const APP_ID = '1157381'
 const API_KEY = 'qdnhm5t55ss7'
@@ -37,6 +38,7 @@ export default function App() {
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<StartPage />} />
+          <Route element={<HomePage />} path="/home" />
         </Routes>
       </Router>
     </StreamApp>

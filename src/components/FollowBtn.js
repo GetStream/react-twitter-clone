@@ -4,6 +4,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   button {
+    text-align: center;
     padding: 0 15px;
     font-size: 13px;
     font-weight: bold;

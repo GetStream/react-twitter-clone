@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import useTweet from '../../hooks/useTweet'
 import TweetForm from '../Tweet/TweetForm'
 
 const Container = styled.div`
@@ -7,8 +8,10 @@ const Container = styled.div`
 `
 
 export default function CreateTweetTop() {
+  const { createTweet } = useTweet()
+
   const onSubmit = async (text) => {
-    // create tweet here
+    createTweet(text)
   }
 
   return (

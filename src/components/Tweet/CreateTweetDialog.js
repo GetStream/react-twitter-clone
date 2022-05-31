@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import Modal from '../Modal'
+import useTweet from '../../hooks/useTweet'
 import TweetForm from './TweetForm'
 
 const Container = styled.div`
@@ -18,8 +19,10 @@ const Container = styled.div`
 `
 
 export default function CreateTweetDialog({ onClickOutside }) {
+  const { createTweet } = useTweet()
+
   const onSubmit = async (text) => {
-    // create tweet
+    createTweet(text)
 
     onClickOutside()
   }

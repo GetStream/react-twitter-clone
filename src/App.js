@@ -9,8 +9,8 @@ import { getFromStorage } from './utils/storage'
 import ScrollToTop from './components/ScrollToTop'
 import HomePage from './pages/HomePage'
 
-const APP_ID = '1157381'
-const API_KEY = 'qdnhm5t55ss7'
+const APP_ID = '1183905'
+const API_KEY = 'mx8gc4kmvpec'
 
 export default function App() {
   const userId = getFromStorage('user')

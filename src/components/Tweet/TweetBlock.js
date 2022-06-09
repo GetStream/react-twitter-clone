@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useState } from 'react'
-import { useStreamContext } from 'react-activity-feed'
+import { useFeedContext, useStreamContext } from 'react-activity-feed'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -101,6 +101,8 @@ export default function TweetBlock({ activity }) {
   const navigate = useNavigate()
   const [commentDialogOpened, setCommentDialogOpened] = useState(false)
 
+  const feed = useFeedContext()
+
   const actor = activity.actor
 
   let hasLikedTweet = false
@@ -113,6 +115,10 @@ export default function TweetBlock({ activity }) {
       (l) => l.user.id === user.id
     )
     hasLikedTweet = Boolean(myReaction)
+  }
+
+  const onToggleLike = async () => {
+    await feed.onToggleReaction('like', activity)
   }
 
   const actions = [
@@ -134,6 +140,7 @@ export default function TweetBlock({ activity }) {
       Icon: Heart,
       alt: 'Heart',
       value: activity?.reaction_counts?.like || 0,
+      onClick: onToggleLike,
     },
     {
       id: 'upload',

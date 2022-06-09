@@ -13,6 +13,7 @@ import Upload from '../Icons/Upload'
 import More from '../Icons/More'
 import TweetActorName from './TweetActorName'
 import { generateTweetLink } from '../../utils/links'
+import useComment from '../../hooks/useComment'
 
 const Block = styled.div`
   display: flex;
@@ -103,6 +104,8 @@ export default function TweetBlock({ activity }) {
 
   const feed = useFeedContext()
 
+  const { createComment } = useComment()
+
   const actor = activity.actor
 
   let hasLikedTweet = false
@@ -152,7 +155,7 @@ export default function TweetBlock({ activity }) {
   const tweetLink = activity.id ? generateTweetLink(actor.id, activity.id) : '#'
 
   const onPostComment = async (text) => {
-    // create comment
+    await createComment(text, activity)
   }
 
   return (

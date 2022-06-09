@@ -75,20 +75,12 @@ export default function ProfileHeader() {
           <ArrowLeft size={20} color="white" />
         </button>
         <div className="info">
-          {user ? (
-            <>
-              <h1>{user.data.name}</h1>
-              <span className="info__tweets-count">
-                {activitiesCount} Tweets
-              </span>
-            </>
-          ) : (
-            <h1>Profile</h1>
-          )}
+          <h1>{user.data.name}</h1>
+          <span className="info__tweets-count">{activitiesCount} Tweets</span>
         </div>
       </div>
       <div className="cover">
-        {user && <img src="https://picsum.photos/500/300" />}
+        <img src="https://picsum.photos/500/300" />
       </div>
     </Header>
   )

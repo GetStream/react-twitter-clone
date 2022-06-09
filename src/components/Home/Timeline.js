@@ -7,7 +7,7 @@ export default function Timeline() {
 
   return (
     <div>
-      <FlatFeed Activity={TweetBlock} userId={user.id} feedGroup="user" />
+      <FlatFeed Activity={TweetBlock} userId={user.id} feedGroup="timeline" />
     </div>
   )
 }

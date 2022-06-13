@@ -238,6 +238,7 @@ export default function RightSide() {
           <input
             onChange={(e) => setSearchText(e.target.value)}
             value={searchText}
+            placeholder="Search Streamer"
           />
           <button
             className={classNames(!Boolean(searchText) && 'hide', 'submit-btn')}

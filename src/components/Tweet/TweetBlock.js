@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { useState } from 'react'
-import { useFeedContext, useStreamContext } from 'react-activity-feed'
+import { useStreamContext } from 'react-activity-feed'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -14,6 +14,7 @@ import More from '../Icons/More'
 import TweetActorName from './TweetActorName'
 import { generateTweetLink } from '../../utils/links'
 import useComment from '../../hooks/useComment'
+import useLike from '../../hooks/useLike'
 
 const Block = styled.div`
   display: flex;
@@ -102,8 +103,6 @@ export default function TweetBlock({ activity }) {
   const navigate = useNavigate()
   const [commentDialogOpened, setCommentDialogOpened] = useState(false)
 
-  const feed = useFeedContext()
-
   const { createComment } = useComment()
 
   const actor = activity.actor
@@ -120,8 +119,10 @@ export default function TweetBlock({ activity }) {
     hasLikedTweet = Boolean(myReaction)
   }
 
+  const { toggleLike } = useLike()
+
   const onToggleLike = async () => {
-    await feed.onToggleReaction('like', activity)
+    await toggleLike(activity, hasLikedTweet)
   }
 
   const actions = [

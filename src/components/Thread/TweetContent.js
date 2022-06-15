@@ -15,6 +15,7 @@ import TweetCommentBlock from './TweetCommentBlock'
 import CommentDialog from '../Tweet/CommentDialog'
 import More from '../Icons/More'
 import useComment from '../../hooks/useComment'
+import useLike from '../../hooks/useLike'
 
 const Container = styled.div`
   padding: 10px 15px;
@@ -136,6 +137,7 @@ export default function TweetContent({ activity }) {
   const { client } = useStreamContext()
 
   const { createComment } = useComment()
+  const { toggleLike } = useLike()
 
   const time = format(new Date(activity.time), 'p')
   const date = format(new Date(activity.time), 'PP')
@@ -155,7 +157,7 @@ export default function TweetContent({ activity }) {
   }
 
   const onToggleLike = async () => {
-    await feed.onToggleReaction('like', activity)
+    await toggleLike(activity, hasLikedTweet)
     feed.refresh()
   }
 

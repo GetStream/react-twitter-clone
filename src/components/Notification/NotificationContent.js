@@ -4,6 +4,8 @@ import { NotificationFeed } from 'react-activity-feed'
 import styled from 'styled-components'
 
 import NotificationGroup from './NotificationGroup'
+import { useStreamContext } from 'react-activity-feed'
+import { useEffect } from 'react'
 
 const Container = styled.div`
   h1 {
@@ -68,6 +70,20 @@ const tabList = [
 
 export default function NotificationContent() {
   const [activeTab, setActiveTab] = useState(tabList[0].id)
+
+  const { client, user } = useStreamContext()
+
+  useEffect(() => {
+    async function init() {
+      const notificationFeed = client.feed('notification', user.id)
+
+      const activities = await notificationFeed.removeActivity("588498b4-ebe7-11ec-b097-0ebae3a0a17f")
+
+      console.log({ activities })
+    }
+
+    init()
+  }, [])
 
   return (
     <Container>

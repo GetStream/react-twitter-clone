@@ -165,9 +165,34 @@ const Container = styled.div`
 
 export default function LeftSide({ onClickTweet }) {
   const location = useLocation()
-  const { userData } = useStreamContext()
+  const { client, userData } = useStreamContext()
 
   const [newNotifications, setNewNotifications] = useState(0)
+
+  useEffect(() => {
+    if (!userData || location.pathname === `/notifications`) return
+
+    let notifFeed
+
+    async function init() {
+      notifFeed = client.feed('notification', userData.id)
+      const notifications = await notifFeed.get()
+
+      const unread = notifications.results.filter(
+        (notification) => !notification.is_seen
+      )
+
+      setNewNotifications(unread.length)
+
+      notifFeed.subscribe((data) => {
+        setNewNotifications(newNotifications + data.new.length)
+      })
+    }
+
+    init()
+
+    return () => notifFeed?.unsubscribe()
+  }, [userData])
 
   if (!userData)
     return (

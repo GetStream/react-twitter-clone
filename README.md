@@ -1,3 +1,5 @@
+> **This repository is archived and no longer maintained.** For a current alternative, see [stream-feeds-react-tutorial](https://github.com/GetStream/stream-feeds-react-tutorial).
+
 # streamer
 
 streamer is a Twitter Clone built with Stream Feeds and the React Feeds SDK:
